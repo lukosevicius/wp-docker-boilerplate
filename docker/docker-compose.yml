@@ -2,12 +2,12 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: nginx.dockerfile
+      dockerfile: ./nginx/nginx.dockerfile
     ports:
       - 80:80
       - 443:443
     volumes:
-      - ./src:/var/www/html:delegated
+      - ../src:/var/www/html:delegated
     depends_on:
       - php
       - mysql
@@ -24,13 +24,13 @@ services:
   php:
     build:
       context: .
-      dockerfile: php.dockerfile
+      dockerfile: ./php/php.dockerfile
     volumes:
-      - ./src:/var/www/html:delegated
+      - ../src:/var/www/html:delegated
   wp:
     build:
       context: .
-      dockerfile: php.dockerfile
+      dockerfile: ./php/php.dockerfile
     volumes:
-      - ./src:/var/www/html:delegated
-    entrypoint: ['wp', '--allow-root']
+      - ../src:/var/www/html:delegated
+    entrypoint: ["wp", "--allow-root"]
